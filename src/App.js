@@ -6,7 +6,7 @@ export default function App() {
     <>
       <div className="App">
         <h1>Snake Game</h1>
-        <Game gridSize={15} fps={4} />
+        <Game gridSize={35} fps={12} />
       </div>
     </>
   );
