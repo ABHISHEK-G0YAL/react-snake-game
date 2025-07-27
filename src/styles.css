@@ -3,8 +3,10 @@
 }
 
 .grid {
+  width: fit-content;
   display: flex;
   flex-direction: column;
+  border: 2px solid black;
 }
 
 .row {
@@ -15,17 +17,19 @@
 .gridCell {
   width: 25px;
   height: 25px;
-  border: 0.1px solid;
+  /* border: 0.1px solid; */
 }
 
-.gridCell.white {
+.gridCell.empty {
   background-color: white;
 }
 
-.gridCell.black {
-  background-color: black;
+.gridCell.snake {
+  background: linear-gradient(145deg, #555, #000);
+  border-radius: 6px;
 }
 
-.gridCell.red {
-  background-color: red;
+.gridCell.food {
+  background: radial-gradient(circle at center, #ff89a4, #ff0044);
+  border-radius: 50%;
 }

@@ -1,7 +1,7 @@
 export const CELL = {
-  EMPTY: "EMPTY",
-  SNAKE: "SNAKE",
-  FOOD: "FOOD",
+  EMPTY: "empty",
+  SNAKE: "snake",
+  FOOD: "food",
 };
 
 export const DIRECTION = {
