@@ -1,2 +1,0 @@
-.App{font-family:sans-serif}.grid{border:2px solid #000;flex-direction:column;width:fit-content}.grid,.row{display:flex}.row{flex-direction:row}.gridCell{height:15px;width:15px}.gridCell.empty{background-color:#fff}.gridCell.snake{background:linear-gradient(145deg,#444,#000);border-radius:6px}.gridCell.food{animation:pulse 1s infinite alternate;background:radial-gradient(circle at center,#ff89a4,#f04);border-radius:50%;z-index:1}@keyframes pulse{0%{box-shadow:0 0 2px #a00}to{box-shadow:0 0 8px red}}
-/*# sourceMappingURL=main.ad929c8c.css.map*/
