@@ -74,9 +74,50 @@ const Game = ({ gridSize = 10, fps = 4 }) => {
           break;
       }
     };
+
+    let touchStartX = 0;
+    let touchStartY = 0;
+
+    const handleTouchStart = (e) => {
+      const touch = e.touches[0];
+      touchStartX = touch.clientX;
+      touchStartY = touch.clientY;
+    };
+
+    const handleTouchEnd = (e) => {
+      setStartGame(true);
+      const touch = e.changedTouches[0];
+      const touchEndX = touch.clientX;
+      const touchEndY = touch.clientY;
+
+      const diffX = touchEndX - touchStartX;
+      const diffY = touchEndY - touchStartY;
+
+      if (Math.abs(diffX) > Math.abs(diffY)) {
+        // Horizontal swipe
+        if (diffX > 0) {
+          snake.inputDirection(DIRECTION.RIGHT);
+        } else {
+          snake.inputDirection(DIRECTION.LEFT);
+        }
+      } else {
+        // Vertical swipe
+        if (diffY > 0) {
+          snake.inputDirection(DIRECTION.DOWN);
+        } else {
+          snake.inputDirection(DIRECTION.UP);
+        }
+      }
+    };
+
     window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("touchstart", handleTouchStart);
+    window.addEventListener("touchend", handleTouchEnd);
+
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("touchstart", handleTouchStart);
+      window.removeEventListener("touchend", handleTouchEnd);
     };
   }, []);
 
