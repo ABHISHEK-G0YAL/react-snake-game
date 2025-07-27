@@ -1,7 +1,6 @@
 .App {
   font-family: sans-serif;
-  width: 100vw;
-  height: 100vh;
+  height: 95vh;
   touch-action: none;
 }
 
@@ -18,8 +17,8 @@
 }
 
 .gridCell {
-  width: 15px;
-  height: 15px;
+  width: calc(min(100vw, 100vh) / 50);
+  height: calc(min(100vw, 100vh) / 50);
   /* border: 0.1px solid; */
 }
 
