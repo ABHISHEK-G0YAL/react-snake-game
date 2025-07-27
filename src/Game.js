@@ -17,14 +17,23 @@ const Game = ({ gridSize = 10, fps = 4 }) => {
     gameRef.food = new Food(gameRef.grid);
   }
   if (!gameRef.snake) {
-    gameRef.snake = new Snake(gameRef, () => {
-      gameRef.gameOver = true;
-    });
+    gameRef.snake = new Snake(gameRef);
   }
   const { grid, food, snake } = gameRef;
 
   const updateFrame = () => {
-    snake.move();
+    snake.updateDirection();
+    const newHead = snake.getNewHead();
+    if (snake.checkCollision(newHead)) {
+      gameRef.gameOver = true;
+    }
+    const foodEaten = food.checkFood(newHead);
+    if (foodEaten) {
+      food.spawn();
+    } else {
+      snake.shrink();
+    }
+    snake.grow(newHead);
   };
 
   const loop = (currTime) => {

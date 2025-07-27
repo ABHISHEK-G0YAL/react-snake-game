@@ -32,33 +32,27 @@ class Snake {
     return this.location?.length - this.initLength || 0;
   }
 
-  move() {
-    this.updateDirection();
+  getNewHead() {
     const [dx, dy] = this.direction;
-    const frontLocation = this.location.at(-1);
-    const backLocation = this.location[0];
-    const newFrLocation = {
-      x: (frontLocation.x + dx + this.colLength) % this.colLength,
-      y: (frontLocation.y + dy + this.rowLength) % this.rowLength,
+    const head = this.location.at(-1);
+    return {
+      x: (head.x + dx + this.colLength) % this.colLength,
+      y: (head.y + dy + this.rowLength) % this.rowLength,
     };
-    if (this.checkSnake(newFrLocation)) {
-      this.gameOver();
-    }
-    if (!this.checkFood(newFrLocation)) {
-      this.location.shift();
-      this.grid.setCellState(CELL.EMPTY, backLocation.x, backLocation.y);
-    } else {
-      this.food.spawn();
-    }
-    this.location.push(newFrLocation);
-    this.grid.setCellState(CELL.SNAKE, newFrLocation.x, newFrLocation.y);
   }
 
-  checkFood({ x, y }) {
-    return this.grid.get()[x][y] === CELL.FOOD;
+  shrink() {
+    const backLocation = this.location[0];
+    this.location.shift();
+    this.grid.setCellState(CELL.EMPTY, backLocation.x, backLocation.y);
   }
 
-  checkSnake({ x, y }) {
+  grow(newHead) {
+    this.location.push(newHead);
+    this.grid.setCellState(CELL.SNAKE, newHead.x, newHead.y);
+  }
+
+  checkCollision({ x, y }) {
     return this.grid.get()[x][y] === CELL.SNAKE;
   }
 
